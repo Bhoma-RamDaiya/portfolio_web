@@ -22,7 +22,7 @@ class AboutSection extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: isMobile ? 80 : 120,
-                backgroundImage: const NetworkImage('https://avatars.githubusercontent.com/u/132533989?v=4'),
+                backgroundImage: const NetworkImage('assets/cv/portfolio_image.jpeg'),
               ),
               SizedBox(width: isMobile ? 0 : 48, height: isMobile ? 32 : 0),
               Expanded(
