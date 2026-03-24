@@ -16,6 +16,7 @@ class AboutSection extends StatelessWidget {
         children: [
           Text('About Me', style: AppStyles.sectionTitle(constraints)),
           const SizedBox(height: 32),
+          if(isMobile==false)
           Flex(
             direction: isMobile ? Axis.vertical : Axis.horizontal,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -33,7 +34,22 @@ class AboutSection extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          )
+          else
+            Column(
+              children: [
+                CircleAvatar(
+                  radius: 80,
+                  backgroundImage: const NetworkImage('assets/cv/portfolio_image.jpeg'),
+                ),
+                const SizedBox(height: 32),
+                Text(
+                  'I am a software engineer with a passion for building beautiful and functional applications. I have experience in various technologies, but my main focus is on Flutter. I am always eager to learn new things and take on new challenges.',
+                  style: AppStyles.bodyText,
+                  textAlign:  TextAlign.left,
+                ),
+              ],
+            )
         ],
       ),
     );

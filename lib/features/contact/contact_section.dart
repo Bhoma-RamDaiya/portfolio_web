@@ -105,7 +105,6 @@ class _ContactView extends StatelessWidget {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-
                       // ── Name ──
                       TextFormField(
                         enabled: !isLoading,
@@ -219,14 +218,12 @@ class _ContactView extends StatelessWidget {
                       ),
                       const SizedBox(height: 32),
 
-                      // ── Submit button — your existing NeonButton ──
                       isLoading
                           ? CircularProgressIndicator(
                         color: AppColors.accent,
                       )
                           : NeonButton(
                         text: 'Submit',
-                        // ── Disabled until form is valid ──
                         onPressed: state.isFormValid
                             ? () => context
                             .read<ContactBloc>()

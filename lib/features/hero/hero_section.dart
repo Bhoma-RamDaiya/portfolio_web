@@ -21,9 +21,9 @@ class HeroSection extends StatelessWidget {
     return BlocProvider(
       create: (_) => SocialIconBloc(),
       child:Container(
-        height: MediaQuery.of(context).size.height,
+        // height: MediaQuery.of(context).size.height,
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 48),
+        padding: EdgeInsets.symmetric(horizontal: isMobile ? 32 : 48),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,26 +33,7 @@ class HeroSection extends StatelessWidget {
               children: [
                 Text('Bhoma Ram', style: AppStyles.heroName(constraints)),
                 SizedBox(width: 30),
-                SocialIcon(
-                  iconId: 'linkedin',
-                  icon: FontAwesomeIcons.linkedin,
-                  url: 'https://www.linkedin.com/in/bhoma-ram0506/',
-                  tooltip: 'LinkedIn',
-                ),
-                SizedBox(width: 16),
-                SocialIcon(
-                  iconId: 'github',
-                  icon: FontAwesomeIcons.github,
-                  url: 'https://github.com/Bhoma-RamDaiya',
-                  tooltip: 'GitHub',
-                ),
-                SizedBox(width: 16),
-                // SocialIcon(
-                //   iconId: 'email',
-                //   icon: FontAwesomeIcons.envelope,
-                //   url: 'bhoma05061998@gmail.com',
-                //   tooltip: 'Email',
-                // ),
+
               ],
             ),
             const SizedBox(height: 16),
@@ -75,7 +56,31 @@ class HeroSection extends StatelessWidget {
               },
             ),
             const SizedBox(height: 32),
-            NeonButton(text: 'Download CV', onPressed: () {downloadCV();}),
+            Row(children: [
+              NeonButton(text: 'Download CV', onPressed: () {downloadCV();}),
+              SizedBox(width: 16),
+              SocialIcon(
+                iconId: 'linkedin',
+                icon: FontAwesomeIcons.linkedin,
+                url: 'https://www.linkedin.com/in/bhoma-ram0506/',
+                tooltip: 'LinkedIn',
+              ),
+              SizedBox(width: 16),
+              SocialIcon(
+                iconId: 'github',
+                icon: FontAwesomeIcons.github,
+                url: 'https://github.com/Bhoma-RamDaiya',
+                tooltip: 'GitHub',
+              ),
+              SizedBox(width: 16),
+              // SocialIcon(
+              //   iconId: 'email',
+              //   icon: FontAwesomeIcons.envelope,
+              //   url: 'bhoma05061998@gmail.com',
+              //   tooltip: 'Email',
+              // ),
+            ],)
+
           ],
         ),
       ),

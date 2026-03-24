@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/core/constants/home_section_key.dart';
+import 'package:myapp/widgets/nav_drawer.dart';
 
 import '../../widgets/footer.dart';
 import '../../widgets/header.dart';
@@ -18,7 +19,6 @@ class HomePage extends StatelessWidget {
   void _scrollTo(GlobalKey key) {
     final context = key.currentContext;
     if (context == null) return;
-
     Scrollable.ensureVisible(
       context,
       duration: const Duration(milliseconds: 600),
@@ -28,58 +28,34 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 768;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: Header(onNavTap: _scrollTo),
       ),
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SliverToBoxAdapter(child: HeroSection(constraints: BoxConstraints())),
-          SliverToBoxAdapter(
-            child: AboutSection(
-              constraints: BoxConstraints(),
-              key: HomeSectionKeys.about,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SkillsSection(
-              constraints: BoxConstraints(),
-              key: HomeSectionKeys.skills,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: ProjectsSection(
-              constraints: BoxConstraints(),
-              key: HomeSectionKeys.projects,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: ExperienceSection(
-              constraints: BoxConstraints(),
-              key: HomeSectionKeys.experience,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: ContactSection(
-              constraints: BoxConstraints(),
-              key: HomeSectionKeys.contact,
-            ),
-          ),
-        ],
+      // Drawer lives on Scaffold, not inside Header
+      drawer: isMobile
+          ? NavDrawer(onNavTap: _scrollTo)
+          : null,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = MediaQuery.of(context).size.width;
+          final constraints = BoxConstraints(maxWidth: width);
+          return CustomScrollView(
+            controller: _scrollController,
+            slivers: [
+              SliverToBoxAdapter(child: HeroSection(constraints: constraints)),
+              SliverToBoxAdapter(child: AboutSection(constraints: constraints, key: HomeSectionKeys.about)),
+              SliverToBoxAdapter(child: SkillsSection(constraints: constraints, key: HomeSectionKeys.skills)),
+              SliverToBoxAdapter(child: ProjectsSection(constraints: constraints, key: HomeSectionKeys.projects)),
+              SliverToBoxAdapter(child: ExperienceSection(constraints: constraints, key: HomeSectionKeys.experience)),
+              SliverToBoxAdapter(child: ContactSection(constraints: constraints, key: HomeSectionKeys.contact)),
+            ],
+          );
+        },
       ),
-      // ListView(
-      //   controller: _scrollController,
-      //   children: [
-      //     HeroSection(constraints: const BoxConstraints()),
-      //     AboutSection(constraints :const BoxConstraints() ,key: HomeSectionKeys.about),
-      //     SkillsSection(constraints :const BoxConstraints() , key: HomeSectionKeys.skills),
-      //     ProjectsSection(constraints :const BoxConstraints() ,key: HomeSectionKeys.projects),
-      //     ExperienceSection(constraints :const BoxConstraints() ,key: HomeSectionKeys.experience),
-      //     ContactSection(constraints :const BoxConstraints() ,key: HomeSectionKeys.contact),
-      //   ],
-      // ),
       bottomNavigationBar: const Footer(),
     );
   }
