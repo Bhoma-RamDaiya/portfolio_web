@@ -37,24 +37,10 @@ class HeroSection extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            TypeWriter(
-              controller: TypeWriterController(
-                text:
-                    'I architect and engineer high-performance Flutter applications for mobile and web.',
-                duration: const Duration(milliseconds: 40),
-                repeat: true,
-              ),
-              builder: (context, value) {
-                return Text(
-                  value.text,
-                  maxLines: 3,
-                  style: AppStyles.bodyText.copyWith(
-                    fontSize: isMobile ? 16 : 18,
-                    height: 1.4,
-                  ),
-                );
-              },
-            ),
+           isMobile?SizedBox(
+             height: 40,
+               child: buildTypeWriter(context , isMobile: true)):buildTypeWriter(context , isMobile: false),
+
             const SizedBox(height: 32),
             Row(children: [
               NeonButton(text: 'Download CV', onPressed: () {downloadCV();}),
@@ -73,17 +59,34 @@ class HeroSection extends StatelessWidget {
                 tooltip: 'GitHub',
               ),
               SizedBox(width: 16),
-              // SocialIcon(
-              //   iconId: 'email',
-              //   icon: FontAwesomeIcons.envelope,
-              //   url: 'bhoma05061998@gmail.com',
-              //   tooltip: 'Email',
-              // ),
+
             ],)
 
           ],
         ),
       ),
+    );
+  }
+  Widget buildTypeWriter(BuildContext context , {bool isMobile = false }){
+    return  TypeWriter(
+      controller: TypeWriterController(
+        text:
+        'I architect and engineer high-performance Flutter applications for mobile and web.',
+        duration: const Duration(milliseconds: 40),
+        repeat: true,
+      ),
+      builder: (context, value) {
+        return Text(
+          value.text,
+          maxLines: 3,
+          style: AppStyles.bodyText.copyWith(
+            fontSize: isMobile ? 16 : 18,
+            height: 1.4,
+          ),
+          softWrap: true,
+          overflow: TextOverflow.ellipsis,
+        );
+      },
     );
   }
 }

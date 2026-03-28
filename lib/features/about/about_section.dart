@@ -22,8 +22,8 @@ class AboutSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
-                radius: isMobile ? 80 : 120,
-                backgroundImage: const NetworkImage('assets/cv/portfolio_image.jpeg'),
+                radius: isMobile ? 100 : 120,
+                backgroundImage: const AssetImage('assets/cv/portfolio_image.jpeg'),
               ),
               SizedBox(width: isMobile ? 0 : 48, height: isMobile ? 32 : 0),
               Expanded(
