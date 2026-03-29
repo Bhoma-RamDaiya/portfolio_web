@@ -28,7 +28,7 @@ class AboutSection extends StatelessWidget {
               SizedBox(width: isMobile ? 0 : 48, height: isMobile ? 32 : 0),
               Expanded(
                 child: Text(
-                  'I am a software engineer with a passion for building beautiful and functional applications. I have experience in various technologies, but my main focus is on Flutter. I am always eager to learn new things and take on new challenges.',
+                  'I am a software engineer with a passion for building beautiful and functional applications. I have experience in various technologies, but my main focus is on Flutter & SpringBoot. I am always eager to learn new things and take on new challenges.',
                   style: AppStyles.bodyText,
                   textAlign: isMobile ? TextAlign.center : TextAlign.left,
                 ),

@@ -20,7 +20,7 @@ class HeroSection extends StatelessWidget {
 
     return BlocProvider(
       create: (_) => SocialIconBloc(),
-      child:Container(
+      child: Container(
         // height: MediaQuery.of(context).size.height,
         width: double.infinity,
         padding: EdgeInsets.symmetric(horizontal: isMobile ? 32 : 48),
@@ -33,45 +33,52 @@ class HeroSection extends StatelessWidget {
               children: [
                 Text('Bhoma Ram', style: AppStyles.heroName(constraints)),
                 SizedBox(width: 30),
-
               ],
             ),
             const SizedBox(height: 16),
-           isMobile?SizedBox(
-             height: 40,
-               child: buildTypeWriter(context , isMobile: true)):buildTypeWriter(context , isMobile: false),
+            isMobile
+                ? SizedBox(
+                    height: 65,
+                    child: buildTypeWriter(context, isMobile: true),
+                  )
+                : buildTypeWriter(context, isMobile: false),
 
             const SizedBox(height: 32),
-            Row(children: [
-              NeonButton(text: 'Download CV', onPressed: () {downloadCV();}),
-              SizedBox(width: 16),
-              SocialIcon(
-                iconId: 'linkedin',
-                icon: FontAwesomeIcons.linkedin,
-                url: 'https://www.linkedin.com/in/bhoma-ram0506/',
-                tooltip: 'LinkedIn',
-              ),
-              SizedBox(width: 16),
-              SocialIcon(
-                iconId: 'github',
-                icon: FontAwesomeIcons.github,
-                url: 'https://github.com/Bhoma-RamDaiya',
-                tooltip: 'GitHub',
-              ),
-              SizedBox(width: 16),
-
-            ],)
-
+            Row(
+              children: [
+                NeonButton(
+                  text: 'Download CV',
+                  onPressed: () {
+                    downloadCV();
+                  },
+                ),
+                SizedBox(width: 16),
+                SocialIcon(
+                  iconId: 'linkedin',
+                  icon: FontAwesomeIcons.linkedin,
+                  url: 'https://www.linkedin.com/in/bhoma-ram0506/',
+                  tooltip: 'LinkedIn',
+                ),
+                SizedBox(width: 16),
+                SocialIcon(
+                  iconId: 'github',
+                  icon: FontAwesomeIcons.github,
+                  url: 'https://github.com/Bhoma-RamDaiya',
+                  tooltip: 'GitHub',
+                ),
+                SizedBox(width: 16),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
-  Widget buildTypeWriter(BuildContext context , {bool isMobile = false }){
-    return  TypeWriter(
+
+  Widget buildTypeWriter(BuildContext context, {bool isMobile = false}) {
+    return TypeWriter(
       controller: TypeWriterController(
-        text:
-        'I architect and engineer high-performance Flutter applications for mobile and web.',
+        text:'Flutter developer focused on high-performance apps, with solid backend experience in Java and Spring Boot.',
         duration: const Duration(milliseconds: 40),
         repeat: true,
       ),
