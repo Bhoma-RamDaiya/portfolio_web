@@ -51,8 +51,7 @@ flutter:
   uses-material-design: true
 
   assets:
-       - assets/cv/bhomaram_flutter_resume.pdf
-       - assets/cv/portfolio_image.jpeg
+       - assets/cv/
 
 
   # For details regarding adding assets from package dependencies, see
